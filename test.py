@@ -7,7 +7,7 @@ from dataloader import *
 from torch.utils.data import DataLoader
 
 model_path = sys.argv[2]
-os.environ['CUDA_VISIBLE_DEVICES'] = '4'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 @torch.no_grad()
 def load_model(model_path):
@@ -19,7 +19,7 @@ def load_model(model_path):
 
 @torch.no_grad()
 def evaluate_dataset(model):
-    num_class=11
+    num_class = 11
     dataset = PaddingData(pc_input_num=2048, status='test', aug=False, pc_root=sys.argv[1])
     dataloader = DataLoader(dataset, batch_size=32, shuffle=False, num_workers=2, drop_last=False)
     correct_total = 0

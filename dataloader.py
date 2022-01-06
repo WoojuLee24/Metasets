@@ -62,7 +62,7 @@ class PaddingData(data.Dataset):
             npy_list = glob.glob(os.path.join(pc_root, '*', 'test', '*.npy'))
 
         for idx, _dir in enumerate(npy_list):
-            print("\r%d/%d" % (idx, len(npy_list)), end="")
+            # print("\r%d/%d" % (idx, len(npy_list)), end="")
             pc = np.load(_dir).astype(np.float32)
             if swapax:
                 pc[:, 1] = pc[:, 2] + pc[:, 1]
@@ -143,7 +143,7 @@ class BatchPaddingData(PaddingData):
         self.batch_x = []
         self.batch_y = []
         for b in range(batchsz):
-            print("\rCreating Batch %d/%d" % (b, batchsz), end="")
+            # print("\rCreating Batch %d/%d" % (b, batchsz), end="")
             selected_imgs_idx = np.random.choice(self.pc_list.shape[0], self.batch_size, False)
             self.batch_x.append(self.pc_list[selected_imgs_idx])
             self.batch_y.append(self.lbl_list[selected_imgs_idx])
